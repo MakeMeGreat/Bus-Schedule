@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
      Copyright (C) 2021 The Android Open Source Project
      Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,10 +13,16 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources>
-    <string name="app_name">Bus Schedule</string>
-    <!-- Shown above left column listing bus stops in full schedule fragment -->
-    <string name="bus_stop_header">Stop Name</string>
-    <!-- Shown above right column listing arrival times in full schedule fragment -->
-    <string name="arrival_time_header">Arrival Time</string>
-</resources>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StopScheduleFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</FrameLayout>
