@@ -13,19 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.sqlbasics
+package com.example.busschedule
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        GlobalScope.launch {
-            AppDatabase.getDatabase(applicationContext).californiaParkDao().getAll()
-        }
-    }
-}
+@Entity(tableName = "park")
+data class CaliforniaPark(
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "city") val city: String,
+    @ColumnInfo(name = "area_acres") val acres: Int,
+    @ColumnInfo(name = "park_visitors") val visitors: Int?,
+    @ColumnInfo(name = "established") val established: Long,
+    @ColumnInfo(name = "type") val type: String
+)

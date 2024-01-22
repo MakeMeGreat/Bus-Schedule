@@ -13,19 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.sqlbasics
+package com.example.busschedule
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.Dao
+import androidx.room.Insert
+import androidx.room.Query
 
-@Entity(tableName = "park")
-data class CaliforniaPark(
-    @PrimaryKey(autoGenerate = true) val id: Int,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "city") val city: String,
-    @ColumnInfo(name = "area_acres") val acres: Int,
-    @ColumnInfo(name = "park_visitors") val visitors: Int?,
-    @ColumnInfo(name = "established") val established: Long,
-    @ColumnInfo(name = "type") val type: String
-)
+@Dao
+interface CaliforniaParkDao {
+    @Insert
+    suspend fun insertAll(parks: List<CaliforniaPark>)
+    @Query("SELECT * FROM park")
+    suspend fun getAll(): List<CaliforniaPark>
+}
